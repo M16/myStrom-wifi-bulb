@@ -1,6 +1,11 @@
     var selectedColor = "000000FF";
+
+    // change this one to your bulb mac address
     var bulbMacAddress = "5CCF7FA0B34D";
-    var app = document.getElementById('content');
+
+    // change this one to your bulb ip address
+    var bulbIpAddress = "192.168.4.186";
+
     var isModalActive = true;
     var activeStep = 0;
     var selectedColors = [];
@@ -21,6 +26,7 @@
         let data = JSON.stringify({
                 // myStrom bulb mac address
                 mac : bulbMacAddress,
+                ip : bulbIpAddress,
                 action : "on",
                 ramp: 100,
                 color: colorCode
@@ -33,6 +39,7 @@
       let data = JSON.stringify({
               // myStrom bulb mac address
               mac : bulbMacAddress,
+              ip : bulbIpAddress,
               action : "toggle",
               ramp: 10,
           });
@@ -40,7 +47,6 @@
     }
     function updateColors(event) {
         console.log(event);
-        // app.style.backgroundColor = event.target.value;
         // the first 00 are the Alpha and can be increased to FF
         selectedColor = '00' + event.target.value.substr(1,7).toUpperCase();
         changeBulbColor(selectedColor);
