@@ -48,27 +48,6 @@
             color: colorCode
         });
 
-        //FOR FIRST BULB
-        // let data = JSON.stringify({
-        //         // myStrom bulb mac address
-        //         mac : firstBulbMac,
-        //         // myStrom bulb IP address
-        //         ip : firstBulbIp,
-        //         action : "on",
-        //         ramp: 100,
-        //         color: colorCode
-        //     });
-            //FOR SECOND BULB
-        // let data = JSON.stringify({
-        //         // myStrom bulb mac address
-        //         mac : secondBulbMac,
-        //         // myStrom bulb IP address
-        //         ip : secondBulbIp,
-        //         action : "on",
-        //         ramp: 100,
-        //         color: colorCode
-        //     });
-            //sendt data from a web server
         httpRequest(data);
     }
 //toggle the bulb
@@ -87,21 +66,6 @@
             ramp: 100,
             color: colorCode
         });
-
-    //   let data = JSON.stringify({
-    //           // myStrom bulb mac address
-    //           mac : firstBulbMac,
-    //           ip : firstBulbIp,
-    //           action : "toggle",
-    //           ramp: 10,
-    //       });
-    // let data = JSON.stringify({
-    //         // myStrom bulb mac address
-    //         mac : secondBulbMac,
-    //         ip : secondBulbIp,
-    //         action : "toggle",
-    //         ramp: 10,
-    //     });
       httpRequest(data);
     }
 //change the color of the bulb
@@ -113,7 +77,6 @@
         selectedColor = '00' + event.target.value.substr(1,7).toUpperCase();
         changeBulbColor(selectedColor);
     }
-
 
     // this function returns a Promise : Learn more at https://scotch.io/tutorials/javascript-promises-for-dummies
     function sleep(ms) {
