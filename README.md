@@ -1,14 +1,14 @@
 # myStrom-wifi-bulb project
-a project to have fun with the myStrom wifi bulb api
+ca project to have fun with the myStrom wifi bulb api
 
 ## config the ip and mac address in js/app.js
 ``` javascript
        // change this one to your bulb mac address
-    var bulbMacAddress = "5CCF7FA0B34D";
+    var bulbMacAddress = "6001942C4BAA";
 
     // change this one to your bulb ip address
-    var bulbIpAddress = "192.168.4.186";
-```
+    var bulbIpAddress = "192.168.1.23";
+```gigit
 
 ## run php local server
 ``` bash
