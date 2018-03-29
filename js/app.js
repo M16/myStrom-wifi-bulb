@@ -1,12 +1,12 @@
     var selectedColor = "000000FF";
 
     // change this one to your bulb mac address
-    var bulbMacAddress = "6001942C4BAA";
-    var secondMac = "6001942C52BA";
+    var firstBulbMac = "6001942C4BAA";
+    var secondBulbMac = "6001942C52BA";
 
     // change this one to your bulb ip address
-    var bulbIpAddress = "192.168.1.23";
-    var secondIp = "192.168.1.24";
+    var firstBulbIp = "192.168.1.23";
+    var secondBulbIp = "192.168.1.24";
 
     // declaring global variables
     var isModalActive = true;
@@ -30,45 +30,78 @@
     function changeBulbColor(colorCode = selectedColor) {
         //converts a JavaScript value to a JSON string
         //let declares a block scope local variable
+
+        // both bulbs data
+        let data = JSON.stringify({
+            bulbs :[
+                {
+                    mac : firstBulbMac,
+                    ip : firstBulbIp,
+                },
+                {
+                    mac : secondBulbMac,
+                    ip : secondBulbIp,
+                },
+            ],
+            action : "on",
+            ramp: 100,
+            color: colorCode
+        });
+
         //FOR FIRST BULB
         // let data = JSON.stringify({
         //         // myStrom bulb mac address
-        //         mac : bulbMacAddress,
+        //         mac : firstBulbMac,
         //         // myStrom bulb IP address
-        //         ip : bulbIpAddress,
+        //         ip : firstBulbIp,
         //         action : "on",
         //         ramp: 100,
         //         color: colorCode
         //     });
             //FOR SECOND BULB
-        let data = JSON.stringify({
-                // myStrom bulb mac address
-                mac : secondMac,
-                // myStrom bulb IP address
-                ip : secondIp,
-                action : "on",
-                ramp: 100,
-                color: colorCode
-            });
+        // let data = JSON.stringify({
+        //         // myStrom bulb mac address
+        //         mac : secondBulbMac,
+        //         // myStrom bulb IP address
+        //         ip : secondBulbIp,
+        //         action : "on",
+        //         ramp: 100,
+        //         color: colorCode
+        //     });
             //sendt data from a web server
         httpRequest(data);
     }
 //toggle the bulb
     function toggleTheBulb() {
+         // both bulbs data
+        let data = JSON.stringify({
+            // myStrom bulb mac address
+            firstBulbMac : firstBulbMac,
+            // myStrom bulb IP address
+            firstBulbIp : firstBulbIp,
+            // myStrom bulb mac address
+            secondBulbMac : secondBulbMac,
+            // myStrom bulb IP address
+            secondBulbIp : secondBulbIp,
+            action : "on",
+            ramp: 100,
+            color: colorCode
+        });
+
     //   let data = JSON.stringify({
     //           // myStrom bulb mac address
-    //           mac : bulbMacAddress,
-    //           ip : bulbIpAddress,
+    //           mac : firstBulbMac,
+    //           ip : firstBulbIp,
     //           action : "toggle",
     //           ramp: 10,
     //       });
-        let data = JSON.stringify({
-              // myStrom bulb mac address
-              mac : secondMac,
-              ip : secondIp,
-              action : "toggle",
-              ramp: 10,
-          });
+    // let data = JSON.stringify({
+    //         // myStrom bulb mac address
+    //         mac : secondBulbMac,
+    //         ip : secondBulbIp,
+    //         action : "toggle",
+    //         ramp: 10,
+    //     });
       httpRequest(data);
     }
 //change the color of the bulb
@@ -149,7 +182,7 @@
             await sleep(sleepTime);  
         }
         $('#music')[0].play();
-        crazyMode();
+        // crazyMode(); off for testing
     }
 
     toggleColorPickerModal();
