@@ -1,11 +1,9 @@
-    var selectedColor = "000000FF";
-
-    // change this one to your bulb mac address
+    var selectedColor = "00000000";
+    // first bulb mac and ip
     var firstBulbMac = "6001942C4BAA";
-    var secondBulbMac = "6001942C52BA";
-
-    // change this one to your bulb ip address
     var firstBulbIp = "192.168.1.23";
+    // second bulb mac and ip
+    var secondBulbMac = "6001942C52BA";    
     var secondBulbIp = "192.168.1.24";
 
     // declaring global variables
@@ -27,6 +25,7 @@
         xmlHttpObj.open("POST","api.php",true);
         xmlHttpObj.send(data);
     }
+
     function changeBulbColor(colorCode = selectedColor) {
         //converts a JavaScript value to a JSON string
         //let declares a block scope local variable
@@ -50,25 +49,29 @@
 
         httpRequest(data);
     }
-//toggle the bulb
-    function toggleTheBulb() {
-         // both bulbs data
+
+    //toggle the bulbs
+    function toggleTheBulb(colorCode = selectedColor) {
+                 // both bulbs data
         let data = JSON.stringify({
-            // myStrom bulb mac address
-            firstBulbMac : firstBulbMac,
-            // myStrom bulb IP address
-            firstBulbIp : firstBulbIp,
-            // myStrom bulb mac address
-            secondBulbMac : secondBulbMac,
-            // myStrom bulb IP address
-            secondBulbIp : secondBulbIp,
-            action : "on",
+            bulbs :[
+                {
+                    mac : firstBulbMac,
+                    ip : firstBulbIp,
+                },
+                {
+                    mac : secondBulbMac,
+                    ip : secondBulbIp,
+                },
+            ],
+            action : "toggle",
             ramp: 100,
             color: colorCode
         });
       httpRequest(data);
     }
-//change the color of the bulb
+    
+    //change the color of the bulb
     function updateColors(event) {
         //Outputs a message to the Web Console
         console.log(event);
@@ -106,12 +109,14 @@
             await sleep(randTime);  
         }
     }
-//gets the color that is picked and turn it to hex
+    
+    //gets the color that is picked and turn it to hex
     function setColor(picker) {
         console.log(picker.toString());
 		document.getElementsByTagName('body')[0].style.backgroundColor = '#' + picker.toString()
     }
-//opens and closes the color picker
+
+    //opens and closes the color picker
     function toggleColorPickerModal(step) {
         activeStep = step;
         if (isModalActive == false) {
@@ -122,7 +127,8 @@
             isModalActive = false;
         }
     }
-//turn the selected field the same color as the selected color
+    
+    //turn the selected field the same color as the selected color
     function selectColor(colorCode){
         selectedColors[activeStep] = colorCode;
         $("#colorPickerModal").hide();
